@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Typography, AppBar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
-import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Typography, AppBar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Box, IconButton } from '@mui/material';
+import { ThemeProvider, createTheme, experimentalStyled } from '@mui/material/styles';
 import { indigo, green } from '@mui/material/colors';
+import MenuIcon from '@mui/icons-material/Menu';
+import Paper from '@mui/material/Paper';
+import ResponsiveGrid from './components/ResponsiveGrid';
 
 const theme = createTheme({
   palette: {
@@ -22,14 +24,25 @@ const App = () => {
     <>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <MonetizationOnRoundedIcon />
-            <Typography variant="h6">
-              Welcome to the test app!
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                News
+              </Typography>
+              <Button color="inherit">Login</Button>
+            </Toolbar>
+          </AppBar>
+        </Box>
         <main>
           <div>
             <Container maxWidth="sm">
@@ -41,10 +54,14 @@ const App = () => {
               </Typography>
             </Container>
           </div>
+          <ResponsiveGrid>
+            
+          </ResponsiveGrid>
         </main>
       </ThemeProvider>
     </>
   );
 }
+
 
 export default App;
